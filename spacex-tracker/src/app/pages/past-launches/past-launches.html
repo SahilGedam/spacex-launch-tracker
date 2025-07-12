@@ -1,0 +1,26 @@
+<h2>Past Launches</h2>
+
+<div *ngIf="loading" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
+<div *ngIf="!loading && launches.length === 0">
+  <p>No past launches found.</p>
+</div>
+
+<div *ngIf="!loading && launches.length > 0" class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let launch of launches">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ launch.name }}</h5>
+        <p class="card-text">
+          Date: {{ launch.date_utc | date:'medium' }}<br />
+          Rocket: {{ launch.rocket }}<br />
+        </p>
+        <a *ngIf="launch.links?.webcast" [href]="launch.links.webcast" class="btn btn-sm btn-primary" target="_blank">
+          Watch Launch
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<h2 class="mb-4">Upcoming Launches</h2>
+
+<div *ngIf="loading" class="text-center py-5">
+  <div class="spinner-border text-primary" role="status"></div>
+</div>
+
+<div *ngIf="!loading && launches.length === 0">
+  <p>No upcoming launches found.</p>
+</div>
+
+<div *ngIf="!loading && launches.length > 0" class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let launch of launches">
+    <div class="card h-100 shadow-sm">
+      <img *ngIf="launch.links?.patch?.small" [src]="launch.links.patch.small" class="card-img-top" alt="Mission Patch" />
+      
+      <div class="card-body">
+        <h5 class="card-title">{{ launch.name }}</h5>
+        <p class="card-text mb-1">
+          <strong>Date:</strong> {{ launch.date_utc | date:'medium' }}
+        </p>
+        <p class="card-text mb-1">
+          <strong>Rocket ID:</strong> {{ launch.rocket }}
+        </p>
+        <p class="card-text text-muted" *ngIf="launch.details">
+          {{ launch.details }}
+        </p>
+
+        <div class="d-flex gap-2 mt-3">
+          <a *ngIf="launch.links?.webcast" [href]="launch.links.webcast" target="_blank" class="btn btn-sm btn-outline-primary">
+            🔴 Watch Live
+          </a>
+          <a *ngIf="launch.links?.article" [href]="launch.links.article" target="_blank" class="btn btn-sm btn-outline-secondary">
+            📄 Read Article
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="text-muted mt-4">
+  * Some launch dates may appear in the past due to mission delays or rescheduling.
+</p>
