@@ -25,14 +25,9 @@
           {{ launch.details }}
         </p>
 
-        <div class="d-flex gap-2 mt-3">
-          <a *ngIf="launch.links?.webcast" [href]="launch.links.webcast" target="_blank" class="btn btn-sm btn-outline-primary">
-            🔴 Watch Live
-          </a>
-          <a *ngIf="launch.links?.article" [href]="launch.links.article" target="_blank" class="btn btn-sm btn-outline-secondary">
-            📄 Read Article
-          </a>
-        </div>
+        <a *ngIf="launch.links?.webcast" [href]="launch.links.webcast" class="btn btn-sm btn-primary" target="_blank">
+          Watch Launch
+        </a>
       </div>
     </div>
   </div>
