@@ -1,0 +1,16 @@
+.bg-wrapper {
+  min-height: 100vh;
+  background: url('../../public/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 2rem 0;
+}
+
+.btn-outline-danger {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.btn-outline-danger:hover {
+  background-color: #ff0000;
+  color: white;
+}
