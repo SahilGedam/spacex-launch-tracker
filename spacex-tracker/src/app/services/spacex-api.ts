@@ -16,4 +16,12 @@ export class SpacexApi {
   getPastLaunches(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/launches/past`);
   }
+
+    getLaunchById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/launches/${id}`);
+  }
+
+  getRocketById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/rockets/${id}`);
+  }
 }

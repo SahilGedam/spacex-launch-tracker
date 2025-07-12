@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SpacexApi } from '../../services/spacex-api';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-past-launches',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './past-launches.html',
   styleUrl: './past-launches.css'
 })

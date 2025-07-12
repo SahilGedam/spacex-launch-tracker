@@ -1,0 +1,54 @@
+.launch-details-wrapper {
+  padding: 2rem 1rem;
+  color: #333;
+}
+
+.rocket-loader .rocket-icon {
+  font-size: 3rem;
+  animation: flyUp 1.2s infinite ease-in-out alternate;
+}
+
+@keyframes flyUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-15px);
+  }
+}
+
+.launch-card {
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.launch-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient text for title */
+.text-gradient {
+  background: linear-gradient(90deg, #007cf0, #00dfd8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card transition */
+.launch-card {
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+}
+
+.launch-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile padding improvement */
+@media (max-width: 576px) {
+  .launch-card {
+    padding: 1.2rem !important;
+  }
+}

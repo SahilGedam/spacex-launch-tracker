@@ -26,6 +26,12 @@ export const routes: Routes = [
         (m) => m.PastLaunches
       ),
   },
+  {
+    path: 'launch/:id',
+    loadComponent: () =>
+      import('./pages/launch-details/launch-details').then((m) => m.LaunchDetails),
+  }
+
 ];
 
 export const appConfig: ApplicationConfig = {

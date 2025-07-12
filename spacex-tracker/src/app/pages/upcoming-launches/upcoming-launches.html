@@ -1,66 +1,61 @@
 <div class="launches-wrapper">
 
-  <h2 class="mb-5 text-center fw-bold display-5 text-gradient">
-    🚀 Upcoming SpaceX Launches
-  </h2>
+    <h2 class="mb-5 text-center fw-bold display-5 text-gradient">
+        🚀 Upcoming SpaceX Launches
+    </h2>
 
-  <div *ngIf="loading" class="rocket-loader text-center my-5">
-    <div class="rocket-icon">🚀</div>
-  </div>
-
-  <div *ngIf="!loading && launches.length === 0" class="text-center text-white">
-    <p>No upcoming launches found.</p>
-  </div>
-
-  <div *ngIf="!loading && launches.length > 0" class="launches-overlay container-fluid py-4 px-3 px-md-5">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      <div class="col" *ngFor="let launch of launches">
-        <div class="card launch-card h-100 border-0 bg-light">
-          <div class="d-flex justify-content-center p-3 pb-0">
-            <img
-              *ngIf="launch.links?.patch?.small"
-              [src]="launch.links.patch.small"
-              class="img-fluid"
-              alt="Mission Patch"
-              style="max-height: 100px; width: auto;"
-            />
-          </div>
-
-          <div class="card-body">
-            <h5 class="card-title text-center fw-semibold text-primary-emphasis">{{ launch.name }}</h5>
-
-            <p class="card-text small">
-              <strong>Date:</strong> {{ launch.date_utc | date:'medium' }}<br />
-              <strong>Rocket ID:</strong> {{ launch.rocket }}
-            </p>
-
-            <p class="card-text text-muted small" *ngIf="launch.details">
-              {{ launch.details }}
-            </p>
-
-     <div class="text-center mt-3">
-  <a
-    *ngIf="launch.links?.webcast"
-    [href]="launch.links.webcast"
-    class="btn btn-sm btn-outline-danger d-inline-flex align-items-center gap-2"
-    target="_blank"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-         class="bi bi-youtube" viewBox="0 0 16 16">
-      <path d="M8.051 1.999c-2.167 0-4.36.083-6.52.24a1.95 1.95 0 0 0-1.45 1.45A41.07 41.07 0 0 0 0 8c0 1.13.038 2.26.112 3.31a1.95 1.95 0 0 0 1.45 1.45c2.16.157 4.353.24 6.52.24s4.36-.083 6.52-.24a1.95 1.95 0 0 0 1.45-1.45c.074-1.05.112-2.18.112-3.31s-.038-2.26-.112-3.31a1.95 1.95 0 0 0-1.45-1.45 41.07 41.07 0 0 0-6.52-.24Zm1.327 3.292L5.682 8.002l3.696 2.711V5.291Z"/>
-    </svg>
-    Watch on YouTube
-  </a>
-</div>
-
-          </div>
-        </div>
-      </div>
+    <div *ngIf="loading" class="rocket-loader text-center my-5">
+        <div class="rocket-icon">🚀</div>
     </div>
 
-    <p class="text-muted text-center mt-5 small">
-      * Some launch dates may appear in the past due to mission delays or rescheduling.
-    </p>
-  </div>
+    <div *ngIf="!loading && launches.length === 0" class="text-center text-white">
+        <p>No upcoming launches found.</p>
+    </div>
+
+    <div *ngIf="!loading && launches.length > 0" class="launches-overlay container-fluid py-4 px-3 px-md-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" *ngFor="let launch of launches">
+                <a [routerLink]="['/launch', launch.id]" class="text-decoration-none text-dark">
+                    <div class="card launch-card h-100 border-0 bg-light">
+                        <div class="d-flex justify-content-center p-3 pb-0">
+                            <img *ngIf="launch.links?.patch?.small" [src]="launch.links.patch.small" class="img-fluid"
+                                alt="Mission Patch" style="max-height: 100px; width: auto;" />
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title text-center fw-semibold text-primary-emphasis">{{ launch.name }}</h5>
+
+                            <p class="card-text small">
+                                <strong>Date:</strong> {{ launch.date_utc | date:'medium' }}<br />
+                                <strong>Details:</strong> {{ launch.details }}
+                            </p>
+
+                            <p class="card-text text-muted small" *ngIf="launch.details">
+                                {{ launch.details.length > 100 ? (launch.details | slice:0:100) + '...' : launch.details
+                                }}
+                            </p>
+
+
+                            <div class="text-center mt-3">
+                                <span *ngIf="launch.links?.webcast"
+                                    class="btn btn-sm btn-outline-danger d-inline-flex align-items-center gap-2 disabled">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                        class="bi bi-youtube" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.051 1.999c-2.167 0-4.36.083-6.52.24a1.95 1.95 0 0 0-1.45 1.45A41.07 41.07 0 0 0 0 8c0 1.13.038 2.26.112 3.31a1.95 1.95 0 0 0 1.45 1.45c2.16.157 4.353.24 6.52.24s4.36-.083 6.52-.24a1.95 1.95 0 0 0 1.45-1.45c.074-1.05.112-2.18.112-3.31s-.038-2.26-.112-3.31a1.95 1.95 0 0 0-1.45-1.45 41.07 41.07 0 0 0-6.52-.24Zm1.327 3.292L5.682 8.002l3.696 2.711V5.291Z" />
+                                    </svg>
+                                    Watch on YouTube
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <p class="text-muted text-center mt-5 small">
+            * Launch data provided by SpaceX API. Some launches may be historic demo/test flights.
+        </p>
+    </div>
 
 </div>

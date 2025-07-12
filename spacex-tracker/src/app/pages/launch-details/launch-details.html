@@ -1,0 +1,77 @@
+<div class="launch-details-wrapper">
+
+  <button class="btn btn-sm btn-outline-secondary mb-4" (click)="goBack()">← Back</button>
+
+  <div *ngIf="loading" class="rocket-loader text-center my-5">
+    <div class="rocket-icon">🚀</div>
+  </div>
+
+<div *ngIf="!loading" class="card launch-card mx-auto p-4 border-0 shadow-lg bg-light" style="max-width: 860px;">
+  <!-- Patch Image -->
+  <div class="text-center mb-3">
+    <img
+      *ngIf="launch.links?.patch?.small"
+      [src]="launch.links.patch.small"
+      alt="Mission Patch"
+      class="img-fluid rounded shadow-sm"
+      style="max-height: 100px;"
+    />
+  </div>
+
+  <!-- Launch Info -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-gradient mb-1">{{ launch.name }}</h2>
+    <p class="text-muted mb-0">{{ launch.date_utc | date: 'fullDate' }}</p>
+  </div>
+
+  <p *ngIf="launch.details" class="text-muted mb-4 text-center px-2">
+    {{ launch.details }}
+  </p>
+
+  <hr class="my-4" />
+
+  <!-- Rocket Info -->
+  <div class="mb-3">
+    <h5 class="fw-semibold text-secondary mb-3">🚀 Rocket Specifications</h5>
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <ul class="list-unstyled small mb-0">
+          <li><strong>Name:</strong> {{ rocket?.name }}</li>
+          <li><strong>Type:</strong> {{ rocket?.type }}</li>
+          <li><strong>First Flight:</strong> {{ rocket?.first_flight | date:'longDate' }}</li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-6">
+        <ul class="list-unstyled small mb-0">
+          <li><strong>Height:</strong> {{ rocket?.height?.meters }} m</li>
+          <li><strong>Mass:</strong> {{ rocket?.mass?.kg | number }} kg</li>
+          <li><strong>Engines:</strong> {{ rocket?.engines?.type }} / {{ rocket?.engines?.number }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Watch Button -->
+  <div class="text-center mt-4">
+    <a
+      *ngIf="launch.links?.webcast"
+      [href]="launch.links.webcast"
+      target="_blank"
+      class="btn btn-danger d-inline-flex align-items-center gap-2 px-4 py-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+           class="bi bi-youtube" viewBox="0 0 16 16">
+        <path d="M8.051 1.999c-2.167 0-4.36.083-6.52.24a1.95 1.95 0 0 0-1.45 1.45A41.07
+          41.07 0 0 0 0 8c0 1.13.038 2.26.112 3.31a1.95 1.95 0 0 0 1.45
+          1.45c2.16.157 4.353.24 6.52.24s4.36-.083 6.52-.24a1.95 1.95 0
+          0 0 1.45-1.45c.074-1.05.112-2.18.112-3.31s-.038-2.26-.112-3.31a1.95
+          1.95 0 0 0-1.45-1.45 41.07 41.07 0 0 0-6.52-.24Zm1.327
+          3.292L5.682 8.002l3.696 2.711V5.291Z"/>
+      </svg>
+      Watch on YouTube
+    </a>
+  </div>
+</div>
+
+
+</div>
